@@ -1,0 +1,46 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <table class="table table-striped table-bordered table-sm">  
+        <thead class="thead-dark">  
+        <tr>  
+            <th>Name</th>  
+            <th>Price</th>  
+            <th>Image</th>  
+            <th>Option</th>  
+            
+        </tr>  
+        </thead>  
+        <tbody>  
+    {% for item in items %}  
+        <tr>  
+            <td>{{ item.name }}</td>  
+            <td>{{ item.price }}</td>  
+            <td>
+                <img src='{{item.image.url}}' alt="Image" class="img-fluid" style="width: 20%">
+            </td>  
+            <td>  
+                <a href="{% url 'update' item.id %}"><span class="glyphicon glyphicon-pencil" > Update</span></a>  
+                <a href="{% url 'delete' item.id %}">Delete</a>  
+            </td>  
+        </tr>  
+    {% endfor %}  
+        </tbody>  
+    </table>  
+    <br>  
+    <br>  
+    <center><a href="{% url 'creat' %}" class="btn btn-primary">Add New Record</a></center> 
+    <br>
+    <br>
+    <div>
+        <form method="GET" action="{% url 'search' %}">
+            <div class="form-group row">  
+                <label class="col-sm-2 col-form-label">Tim kiem theo ten SP:</label>  
+                <div class="col-sm-4">  
+                  <input type="text" name="query" id="search">
+                  <button class ='btn btn-primary' type= submit>Search</button>
+                </div>  
+                
+        </form>
+    </div>
+{% endblock %}
